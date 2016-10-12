@@ -14,7 +14,7 @@ namespace
   public:
     bool operator() (const Item &A, const Item &B)
       {
-          return A < B;
+          return B < A;
       }
   };
 }
@@ -68,7 +68,7 @@ void insertion_sort(Item *a, std::size_t l, std::size_t r, Comparator comp)
     {
         size_t j = i;
         Item v = a[i];
-        while (j > 0 && comp(v, a[j - 1]))
+        while (j > l && comp(v, a[j - 1]))
         {
             a[j] = a[j - 1];
             --j;
@@ -101,7 +101,7 @@ void insertion_sort(Iterator begin, Iterator end, Comparator comp)
 {
     for (auto it = begin + 1; it < end; ++it)
     {
-        auto it_cur = it;
+        auto it_cur = it; 
         auto v = *it;
         while (it_cur != begin && (comp(v, *(it_cur - 1))))
         {
@@ -111,4 +111,14 @@ void insertion_sort(Iterator begin, Iterator end, Comparator comp)
         }
       *it = v;
     }
+}
+
+///buble_sort
+template <typename Item, typename Comparator>
+void buble_sort(Item *a, std::size_t l, std::size_t r, Comparator comp)
+{
+    for (size_t i = l; i < r; ++i)
+        for (size_t j = r; j > i; --j)
+            if (comp(a[j - 1], a[j]))
+                exch(a[j - 1], a[j]);
 }

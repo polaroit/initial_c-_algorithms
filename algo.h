@@ -27,6 +27,9 @@ namespace sortFun
   template <typename Iterator, typename Comparator>
   void insertion_sort(Iterator begin, Iterator end, Comparator comp);
 
+///buble_sort
+  template <typename Item, typename Comparator = les<Item>>
+  void buble_sort(Item *a, std::size_t l, std::size_t r, Comparator comp = Comparator());
 
 
 
