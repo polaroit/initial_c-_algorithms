@@ -122,3 +122,44 @@ void buble_sort(Item *a, std::size_t l, std::size_t r, Comparator comp)
             if (comp(a[j - 1], a[j]))
                 exch(a[j - 1], a[j]);
 }
+
+template <typename Iterator>
+void buble_sort(Iterator begin, Iterator end)
+{
+    for (auto it = begin; it != end; ++it)
+        for (auto it_cur = end - 1; it_cur != it; --it_cur)
+            if (*(it_cur - 1) < *it_cur)
+                exch(*(it_cur - 1), *it_cur);
+}
+
+template <typename Iterator, typename Comparator>
+void buble_sort(Iterator begin, Iterator end, Comparator comp)
+{
+    for (auto it = begin; it != end; ++it)
+        for (auto it_cur = end - 1; it_cur != it; --it_cur)
+            if (comp(*(it_cur - 1), *it_cur))
+                exch(*(it_cur - 1), *it_cur);
+}
+
+///shell_sort
+template <typename Item>
+void shell_sort(Item *a, size_t l, size_t r)
+{
+    size_t h;
+    for ( h = 1; h <= (r - l)/9; h = 3*h + 1)
+
+    for (; h > 0; h /=3)
+        for (size_t i = l + h; i <= r; ++i)
+        {
+            size_t j = i;
+            Item v = a[i];
+            while (j >= l + h && v < a[j - h])
+            {
+                a[j] = a[j - h];
+                j -= h;
+            }
+            a[j] = v;
+        }
+}
+
+
